@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebBa.Models.Domain
+namespace WebAPI.Models.Domain
 {
     public class Book
     {
@@ -16,8 +16,7 @@ namespace WebBa.Models.Domain
         public DateTime DateAdded { get; set; }
 
         public int PublisherID { get; set; }
-        public WebAPI.Models.Domain.Publisher Publisher { get; set; }
-
-        public List<WebAPI.Models.Domain.Book_Author> Book_Authors { get; set; }
+        public Publisher Publisher { get; set; }
+        public List<Book_Author> Book_Authors { get; set; }
     }
 }
