@@ -7,7 +7,9 @@ namespace WebAPI.Models.DTO
         [Required]
         [MinLength(10)]
         public string? Title { get; set; }
+        [MinLength(50)]
         public string? Description { get; set; }
+        
         public bool IsRead { get; set; }
         public DateTime? DateRead { get; set; }
         [Range(0, 5, ErrorMessage = "From 0 to 5")]
