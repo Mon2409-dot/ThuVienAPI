@@ -5,8 +5,20 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// ===== SERILOG LOGGING =====
+var _logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("Logs/ThuVien_log.txt", rollingInterval: RollingInterval.Minute)
+    .MinimumLevel.Information()
+    .CreateLogger();
+
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(_logger);
+// ===== END SERILOG LOGGING =====
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
