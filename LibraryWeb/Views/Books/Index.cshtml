@@ -1,0 +1,42 @@
+﻿@model IEnumerable<LibraryWeb.Models.DTO.BookDTO>
+@if (ViewBag.Error != null)
+{
+    <p style="color:red">@ViewBag.Error</p>
+}
+<h2>List all books</h2>
+
+<a class="btn btn-primary" asp-controller="Books" asp-action="addBook">Add new book</a>
+<table class="table">
+    <tr>
+        <th>Id code</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Publisher</th>
+        <th>Rating</th>
+        <th>Detail</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Title</td>
+            <td>@foreach(var i in item.AuthorNames){
+                @i
+                <br />
+            }
+        </td>
+        <td>@item.PublisherName</td>
+        <td>
+            @for (var i = 0; i < item.Rate; i++)
+            {
+                <span class="glyphicon glyphicon-star"></span>
+            }
+        </td>
+        <td><a asp-controller="Books" asp-action="listBook" asp-route-id="@item.Id">Detail</a></td>
+        <td><a asp-controller="Books" asp-action="editBook" asp-route-id="@item.Id">Edit</a></td>
+        <td><a asp-controller="Books" asp-action="delBook" asp-route-id="@item.Id">Delete</a></td>
+    </tr>
+}
+</table>

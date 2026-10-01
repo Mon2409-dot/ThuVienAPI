@@ -34,6 +34,11 @@ builder.Services.AddScoped<IBookRepository, SQLBookRepository>();
 builder.Services.AddScoped<IAuthorRepository, SQLAuthorRepository>();
 builder.Services.AddScoped<IPublisherRepository, SQLPublisherRepository>();
 
+// ===== IMAGE UPLOAD/DOWNLOAD =====
+builder.Services.AddScoped<IImageRepository, LocalImageRepository>();
+builder.Services.AddHttpContextAccessor();
+// ===== END IMAGE UPLOAD/DOWNLOAD =====
+
 // ===== JWT AUTHENTICATION =====
 
 // Đăng ký DB riêng cho Authentication (Identity)
