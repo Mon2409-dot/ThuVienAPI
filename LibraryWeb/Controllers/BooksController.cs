@@ -18,7 +18,7 @@ namespace LibraryWeb.Controllers
             try
             {
                 var client = httpClientFactory.CreateClient("default");
-                var httpResponseMess = await client.GetAsync("https://localhost:5212/api/Books/get-all-books");
+                var httpResponseMess = await client.GetAsync("https://localhost:7207/api/Books/get-all-books");
                 httpResponseMess.EnsureSuccessStatusCode();
                 response.AddRange(await httpResponseMess.Content.ReadFromJsonAsync<IEnumerable<BookDTO>>());
             }

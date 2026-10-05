@@ -26,7 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Logs\" />
-    <Folder Include="Images\" />
+    <Folder Include="Models\Images\" />
   </ItemGroup>
 
 </Project>
