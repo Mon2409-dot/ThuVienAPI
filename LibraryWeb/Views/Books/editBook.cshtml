@@ -1,0 +1,69 @@
+﻿@model LibraryWeb.Models.DTO.editBookDTO
+@{
+    var book = ViewBag.Book;
+    var listAuthor = ViewBag.listAuthor;
+    var listPublisher = ViewBag.listPublisher;
+}
+<h2>Edit book:</h2>
+<form asp-controller="Books" asp-action="editBook" asp-route-id="@book.Id" method="POST" style="max-width: 600px;">
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" name="Title" value="@book.Title" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" name="Description" rows="3">@book.Description</textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">IsRead</label><br />
+        @if (book.IsRead == true)
+        {
+            <input type="radio" name="IsRead" value="True" checked /> <label>Yes</label>
+            <input type="radio" name="IsRead" value="False" /> <label>No</label>
+        }
+        else
+        {
+            <input type="radio" name="IsRead" value="True" /> <label>Yes</label>
+            <input type="radio" name="IsRead" value="False" checked /> <label>No</label>
+        }
+    </div>
+    <div class="mb-3">
+        <label class="form-label">DateRead</label>
+        <input type="datetime-local" class="form-control" name="DateRead" value="@(book.DateRead != null ? ((DateTime)book.DateRead).ToString("yyyy-MM-ddTHH:mm") : "")" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Rate</label>
+        <input type="number" class="form-control" name="Rate" value="@book.Rate" min="0" max="5" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Genre</label>
+        <input type="text" class="form-control" name="Genre" value="@book.Genre" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Cover Url</label>
+        <input type="text" class="form-control" name="CoverUrl" value="@book.CoverUrl" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">DateAdded</label>
+        <input type="datetime-local" class="form-control" name="DateAdded" value="@(((DateTime)book.DateAdded).ToString("yyyy-MM-ddTHH:mm"))" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Publisher (hiện tại: @book.PublisherName)</label>
+        <select class="form-select" name="PublisherID">
+            @foreach (var item in listPublisher)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Author</label>
+        <select class="form-select" name="AuthorIds" multiple size="5">
+            @foreach (var item in listAuthor)
+            {
+                <option value="@item.Id">@item.FullName</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

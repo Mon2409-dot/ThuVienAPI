@@ -1,0 +1,40 @@
+﻿@model LibraryWeb.Models.DTO.BookDTO
+<h1>Thông tin sách:</h1>
+@if (Model.CoverUrl != null)
+{
+    <img src="@Model.CoverUrl" style="float:left;width:200px; margin-right:10px;" />
+}
+<p>Tên sách: @Model.Title</p>
+<p>Mô tả: @Model.Description</p>
+<p>Date read: @Model.DateRead</p>
+<p>Is Read?:
+@if (Model.IsRead == true)
+{
+    <input type="radio" id="isRead" name="isRead" value="Yes" checked disabled /> <label>Read</label>
+    <input type="radio" id="isRead" name="isRead" value="No" disabled /> <label>Not Read</label>
+}
+else
+{
+    <input type="radio" id="isRead" name="isRead" value="Yes" disabled /> <label>Read</label>
+    <input type="radio" id="isRead" name="isRead" value="No" checked disabled /> <label>Not Read</label>
+}
+</p>
+<p> Review:
+@for (var i = 0; i < (Model.Rate ?? 0); i++)
+{
+    <span style="color: gold;">★</span>
+}
+    <p>Thể loại: @Model.Genre</p>
+    <p>Date added: @Model.DateAdded</p>
+    <p>Nhà xuất bản: @Model.PublisherName</p>
+    <p>Tác giả:
+    @if (Model.AuthorNames != null)
+    {
+        @foreach (var item in Model.AuthorNames)
+        {
+            @item <br />
+        }
+    }
+    </p>
+</p>
+<a asp-controller="Books" asp-action="Index">Quay lại danh sách</a>

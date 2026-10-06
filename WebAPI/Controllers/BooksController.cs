@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("get-all-books")]
-        //[Authorize(Roles = "Read")]
+        [Authorize(Roles = "Read")]
         public IActionResult GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery,
             [FromQuery] string? sortBy, [FromQuery] bool isAscending,
             [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 3)
@@ -44,7 +44,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("get-book-by-id/{id}")]
-        //[Authorize(Roles = "Read")]
+        [Authorize(Roles = "Read")]
         public IActionResult GetBookById([FromRoute] int id)
         {
             _logger.LogInformation($"GetBookById Action method was invoked for id={id}");
@@ -55,7 +55,7 @@ namespace WebAPI.Controllers
 
         [HttpPost("add-book")]
         [ValidateModel]
-        //[Authorize(Roles = "Write")]
+        [Authorize(Roles = "Write")]
         public IActionResult AddBook([FromBody] AddBookRequestDTO addBookRequestDTO)
         {
             _logger.LogInformation("AddBook Action method was invoked");
@@ -72,7 +72,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update-book-by-id/{id}")]
-        //[Authorize(Roles = "Write")]
+        [Authorize(Roles = "Write")]
         public IActionResult UpdateBookById(int id, [FromBody] AddBookRequestDTO bookDTO)
         {
             _logger.LogInformation($"UpdateBookById Action method was invoked for id={id}");
@@ -82,7 +82,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("delete-book-by-id/{id}")]
-        //[Authorize(Roles = "Write")]
+        [Authorize(Roles = "Write")]
         public IActionResult DeleteBookById(int id)
         {
             _logger.LogInformation($"DeleteBookById Action method was invoked for id={id}");

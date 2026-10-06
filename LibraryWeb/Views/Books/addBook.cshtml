@@ -1,0 +1,60 @@
+﻿@model LibraryWeb.Models.DTO.addBookDTO
+@{
+    var listAuthor = ViewBag.listAuthor;
+    var listPublisher = ViewBag.listPublisher;
+}
+<h2>Add new book:</h2>
+<form asp-controller="Books" asp-action="addBook" method="POST" style="max-width: 600px;">
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" name="title" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" name="description" rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">IsRead</label><br />
+        <input type="radio" name="isRead" value="True" /> <label>Yes</label>
+        <input type="radio" name="isRead" value="False" checked /> <label>No</label>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">DateRead</label>
+        <input type="datetime-local" class="form-control" name="dateRead" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Rate</label>
+        <input type="number" class="form-control" name="rate" min="0" max="5" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Genre</label>
+        <input type="text" class="form-control" name="genre" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Cover Url</label>
+        <input type="text" class="form-control" name="coverUrl" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">DateAdded</label>
+        <input type="datetime-local" class="form-control" name="dateAdded" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Publisher</label>
+        <select class="form-select" name="publisherID">
+            @foreach (var item in listPublisher)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Author</label>
+        <select class="form-select" name="authorIds" multiple size="5">
+            @foreach (var item in listAuthor)
+            {
+                <option value="@item.Id">@item.FullName</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

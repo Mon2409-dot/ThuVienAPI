@@ -26,17 +26,17 @@
                 @i
                 <br />
             }
-        </td>
-        <td>@item.PublisherName</td>
-        <td>
-            @for (var i = 0; i < item.Rate; i++)
-            {
-                <span class="glyphicon glyphicon-star"></span>
-            }
-        </td>
-        <td><a asp-controller="Books" asp-action="listBook" asp-route-id="@item.Id">Detail</a></td>
-        <td><a asp-controller="Books" asp-action="editBook" asp-route-id="@item.Id">Edit</a></td>
-        <td><a asp-controller="Books" asp-action="delBook" asp-route-id="@item.Id">Delete</a></td>
-    </tr>
-}
+            </td>
+            <td>@item.PublisherName</td>
+            <td>
+                @for (var i = 0; i < (item.Rate ?? 0); i++)
+                {
+                    <span style="color: gold;">★</span>
+                }
+            </td>
+            <td><a asp-controller="Books" asp-action="listBook" asp-route-id="@item.Id">Detail</a></td>
+            <td><a asp-controller="Books" asp-action="editBook" asp-route-id="@item.Id">Edit</a></td>
+            <td><a asp-controller="Books" asp-action="delBook" asp-route-id="@item.Id">Delete</a></td>
+        </tr>
+    }
 </table>
