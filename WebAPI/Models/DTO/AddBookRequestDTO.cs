@@ -7,7 +7,7 @@ namespace WebAPI.Models.DTO
         [Required]
         [MinLength(10)]
         public string? Title { get; set; }
-        [MinLength(50)]
+        [MinLength(10)]
         public string? Description { get; set; }
         
         public bool IsRead { get; set; }
